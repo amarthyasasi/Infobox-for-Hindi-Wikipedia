@@ -1,0 +1,39 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+
+# SELECT ?pLabel ?prop ?val ?valLabel ?birthplaceLabel
+SELECT ?placeofbirthLabel ?dateofbirth ?birthnameLabel ?dateofdeath ?placeofdeathLabel ?restingplaceLabel ?occupationLabel ?writinglanguageLabel ?nationalityLabel ?educationLabel ?genreLabel ?notableworkLabel ?awardLabel ?spouseLabel ?childrenLabel ?signature ?websiteLabel
+WHERE {
+# wd:Q42 ?prop ?val .
+VALUES ?query_id {wd:Q42}
+OPTIONAL { ?query_id wdt:P19 ?placeofbirth . }
+OPTIONAL { ?query_id wdt:P569 ?dateofbirth . }
+OPTIONAL { ?query_id wdt:P1477 ?birthname . }
+OPTIONAL { ?query_id wdt:P570 ?dateofdeath . }
+OPTIONAL { ?query_id wdt:P20 ?placeofdeath . }
+OPTIONAL { ?query_id wdt:P119 ?restingplace . }
+# ?pen-name
+OPTIONAL { ?query_id wdt:P106 ?occupation . }
+OPTIONAL { ?query_id wdt:P6886 ?writingLanguage . } # Assuming the language in writer's infobox means writing language
+OPTIONAL { ?query_id wdt:P27 ?nationality . }
+OPTIONAL { ?query_id wdt:P69 ?education . }# can probably use for alma-mater too
+# ?period  
+OPTIONAL { ?query_id wdt:P136 ?genre . }
+# ?subject
+# ?literary-movement
+OPTIONAL { ?query_id wdt:P800 ?notablework . }
+OPTIONAL { ?query_id wdt:P1411 ?award . }# Be careful this node is 'nominated for'
+# ?years-active
+OPTIONAL { ?query_id wdt:P26 ?spouse . }
+OPTIONAL { ?query_id wdt:P40 ?children . }
+# ?relatives # Must be notable (How?) Same for spouse and children
+OPTIONAL { ?query_id wdt:P109 ?signature . }
+OPTIONAL { ?query_id wdt:P856 ?website . }
+
+SERVICE wikibase:label { bd:serviceParam wikibase:language 'hi,en'. }
+}
+# LIMIT 2

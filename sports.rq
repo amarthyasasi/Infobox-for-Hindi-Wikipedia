@@ -1,0 +1,35 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+
+# SELECT ?pLabel ?prop ?val ?valLabel ?birthplaceLabel
+SELECT ?image ?icon ?pronounciation ?subclassLabel ?origincountryLabel ?practicedbyLabel ?itemsusedLabel ?shortnameLabel ?authorityLabel ?regulatedby ?minplayersLabel ?maxplayersLabel ?inventorLabel ?instanceLabel ?inventiontimeLabel
+WHERE {
+# wd:Q42 ?prop ?val .
+VALUES ?query_id {wd:Q1734}
+OPTIONAL { ?query_id wdt:P18 ?image . }  
+OPTIONAL { ?query_id wdt:P2910 ?icon . }  
+OPTIONAL { ?query_id wdt:P443 ?pronounciation . }  
+#take_label for wilipedia commons/wiki-media link.
+  
+OPTIONAL { ?query_id wdt:P31 ?instance . }
+OPTIONAL { ?query_id wdt:P279 ?subclass . }
+OPTIONAL { ?query_id wdt:P1813 ?shortname . }
+OPTIONAL { ?query_id wdt:P797 ?authority . }
+OPTIONAL { ?query_id wdt:P3719 ?regulatedby . }
+OPTIONAL { ?query_id wdt:P495 ?origincountry . }
+OPTIONAL { ?query_id wdt:P3095 ?practicedby . }
+
+OPTIONAL { ?query_id wdt:P2283 ?itemsused . }
+OPTIONAL { ?query_id wdt:P1872 ?minplayers . }
+OPTIONAL { ?query_id wdt:P1873 ?maxplayers . }
+OPTIONAL { ?query_id wdt:P361 ?inventor . } 
+OPTIONAL { ?query_id wdt:P575 ?inventiontime . } 
+# Need to figure out how to add image, icon and pronounciation audio. 
+
+SERVICE wikibase:label { bd:serviceParam wikibase:language 'hi,en'. }
+}
+# LIMIT 2
