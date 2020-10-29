@@ -5,25 +5,55 @@ PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
 # SELECT ?pLabel ?prop ?val ?valLabel ?birthplaceLabel
-SELECT ?image ?icon ?logoimage ?pronounciation ?subclassLabel ?origincountryLabel ?practicedbyLabel ?itemsusedLabel ?shortnameLabel ?performerLabel ?original_lang ?directorLabel ?screenwriterLabel ?castLabel ?instanceLabel ?inventiontimeLabel ?partofLabel ?namedafterLabel ?titleLabel ?genreLabel ?subjectLabel ?execproducerLabel ?dopLabel ?editorLabel ?productiondesignerLabel ?distributedbyLabel ?inspiredbyLabel ?soundtrackreleaseLabel ?setinperiodLabel  ?narrativelocationLabel ?filminglocationLabel ?durationLabel ?colorLabel ?reviewscoreLabel ?awardsrecievedLabel ?nominatedforLabel ?boxofficeLabel ?costLabel ?officialwebsiteLabel ?hasqualityLabel
+SELECT ?query_idLabel ?image ?directorLabel ?producer_nameLabel ?screenwriterLabel ?based_on_nameLabel ?castLabel ?composerLabel ?dopLabel ?editorLabel ?productioncompanyLabel ?distributedbyLabel ?publication ?durationLabel ?origincountryLabel ?original_langLabel ?costLabel ?boxofficeLabel
+# ?icon 
+# ?logoimage 
+# ?pronounciation 
+# ?subclassLabel 
+
+
+# ?practicedbyLabel 
+# ?itemsusedLabel 
+# ?shortnameLabel 
+# ?performerLabel 
+# ?instanceLabel 
+# ?inventiontimeLabel 
+# ?partofLabel 
+# ?namedafterLabel 
+# ?titleLabel 
+# ?genreLabel 
+# ?subjectLabel 
+# ?execproducerLabel  
+# ?productiondesignerLabel 
+# ?inspiredbyLabel 
+# ?soundtrackreleaseLabel 
+# ?setinperiodLabel  
+# ?narrativelocationLabel 
+# ?filminglocationLabel 
+# ?colorLabel 
+# ?reviewscoreLabel 
+# ?awardsrecievedLabel 
+# ?nominatedforLabel 
+# ?officialwebsiteLabel 
+# ?hasqualityLabel
 WHERE {
 # wd:Q42 ?prop ?val .
 VALUES ?query_id {wd:Q13897247}
-# OPTIONAL { ?query_id wdt:P18 ?image . }  
+OPTIONAL { ?query_id wdt:P18 ?image . }  
 # OPTIONAL { ?query_id wdt:P2910 ?icon . }  
 # OPTIONAL { ?query_id wdt:P154 ?logoimage . }
 # OPTIONAL { ?query_id wdt:P443 ?pronounciation . }  
 # #take_label for wilipedia commons/wiki-media link.
 #  
-OPTIONAL { ?query_id wdt:P31 ?instance . }
-OPTIONAL { ?query_id wdt:P361 ?partof . }
-OPTIONAL { ?query_id wdt:P279 ?subclass . }
-OPTIONAL { ?query_id wdt:P1476 ?title . }
-OPTIONAL { ?query_id wdt:P138 ?namedafter . }
+# OPTIONAL { ?query_id wdt:P31 ?instance . }
+# OPTIONAL { ?query_id wdt:P361 ?partof . }
+# OPTIONAL { ?query_id wdt:P279 ?subclass . }
+# OPTIONAL { ?query_id wdt:P1476 ?title . }
+# OPTIONAL { ?query_id wdt:P138 ?namedafter . }
 OPTIONAL { ?query_id wdt:P136 ?genre . }
 # OPTIONAL { ?query_id wdt:P921 ?subject . }
 # OPTIONAL { ?query_id wdt:P1813 ?shortname . }
-OPTIONAL { ?query_id wdt:P175 ?performer . }
+# OPTIONAL { ?query_id wdt:P175 ?performer . }
 OPTIONAL { ?query_id wdt:P364 ?original_lang . }
 OPTIONAL { ?query_id wdt:P495 ?origincountry . }
 OPTIONAL { ?query_id wdt:P577 ?publication . } #multiple dates in multiple countries
@@ -32,29 +62,30 @@ OPTIONAL { ?query_id wdt:P577 ?publication . } #multiple dates in multiple count
 OPTIONAL { ?query_id wdt:P57 ?director . }
 OPTIONAL { ?query_id wdt:P58 ?screenwriter . }
 OPTIONAL { ?query_id wdt:P161 ?cast . } 
-OPTIONAL { ?query_id wdt:P1431 ?execproducer . } 
+# OPTIONAL { ?query_id wdt:P1431 ?execproducer . } 
 OPTIONAL { ?query_id wdt:P344 ?dop . } #director of photography
 OPTIONAL { ?query_id wdt:P1040 ?editor . } 
 # OPTIONAL { ?query_id wdt:P2554 ?productiondesigner . }
 # OPTIONAL { ?query_id wdt:P2515 ?costumedesigner . }
-# OPTIONAL { ?query_id wdt:P86 ?composer . }
+OPTIONAL { ?query_id wdt:P86 ?composer . }
 # OPTIONAL { ?query_id wdt:P2438 ?narrator . }
-# OPTIONAL { ?query_id wdt:P162 ?producer . }
-# OPTIONAL { ?query_id wdt:P272 ?productioncompany . }
-# OPTIONAL { ?query_id wdt:P750 ?distributedby . }
+OPTIONAL { ?query_id wdt:P162 ?producername . }
+OPTIONAL { ?query_id wdt:P272 ?productioncompany . }
+OPTIONAL { ?query_id wdt:P144 ?based_on_name . }
+OPTIONAL { ?query_id wdt:P750 ?distributedby . }
 # OPTIONAL { ?query_id wdt:P941 ?inspiredby . }
 # OPTIONAL { ?query_id wdt:P406 ?soundtrackrelease . }
 # OPTIONAL { ?query_id wdt:P2408 ?setinperiod . }
 # OPTIONAL { ?query_id wdt:P840 ?narrativelocation . }
 # OPTIONAL { ?query_id wdt:P915 ?filminglocation . }
 OPTIONAL { ?query_id wdt:P2047 ?duration . }
-OPTIONAL { ?query_id wdt:P462 ?color . }
+# OPTIONAL { ?query_id wdt:P462 ?color . }
 # OPTIONAL { ?query_id wdt:P444 ?reviewscore . }
 # OPTIONAL { ?query_id wdt:P166 ?awardsrecieved . }
 # OPTIONAL { ?query_id wdt:P1411 ?nominatedfor . }
 OPTIONAL { ?query_id wdt:P2142 ?boxoffice . }
 OPTIONAL { ?query_id wdt:P2130 ?cost . } 
-OPTIONAL { ?query_id wdt:P856 ?officialwebsite . }
+# OPTIONAL { ?query_id wdt:P856 ?officialwebsite . }
 # OPTIONAL { ?query_id wdt:P1552 ?hasquality . }
 
 # Need to figure out how to add image, icon and pronounciation audio. 
